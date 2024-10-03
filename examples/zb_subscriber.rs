@@ -33,9 +33,13 @@ fn main() {
 fn subscriber(runtime: ResMut<TokioTasksRuntime>) {
     runtime.spawn_background_task(|mut ctx| async move {
         let session = zenoh::open(config::default()).res().await.unwrap();
-        let subscriber = session.declare_subscriber("zb_publisher/**").res().await.unwrap();
+        let subscriber = session
+            .declare_subscriber("zb_publisher/**")
+            .res()
+            .await
+            .unwrap();
         while let Ok(sample) = subscriber.recv_async().await {
             println!("Key expr: {} - Received: {}", sample.key_expr, sample);
-        };
+        }
     });
 }

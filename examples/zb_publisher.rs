@@ -59,15 +59,16 @@ fn background_publisher(runtime: ResMut<TokioTasksRuntime>) {
                 .await
                 .unwrap();
 
-            ctx.run_on_main_thread(move |ctx| 
-                match ctx.world.get_resource_mut::<MyResource>() {
-                Some(mut my_resource) => {
-                    return my_resource.1 += 1;
-                }
-                None => {
-                    panic!("Resource not found");
-                }
-            })
+            ctx.run_on_main_thread(
+                move |ctx| match ctx.world.get_resource_mut::<MyResource>() {
+                    Some(mut my_resource) => {
+                        return my_resource.1 += 1;
+                    }
+                    None => {
+                        panic!("Resource not found");
+                    }
+                },
+            )
             .await;
 
             tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
