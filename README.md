@@ -1,3 +1,5 @@
+![Cargo build](https://github.com/RustStudio/bevy_zenoh/actions/workflows/build.yaml/badge.svg) ![Cargo test](https://github.com/RustStudio/bevy_zenoh/actions/workflows/test.yaml/badge.svg) ![Cargo format](https://github.com/RustStudio/bevy_zenoh/actions/workflows/format.yaml/badge.svg)
+
 # Bevy with Bevy
 This repository is to provide simple bevy-zenoh integration
 
